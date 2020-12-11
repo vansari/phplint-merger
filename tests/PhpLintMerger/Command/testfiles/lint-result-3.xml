@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="PHP Linter" timestamp="2020-12-10T20:35:50+0100" time="1 sec" tests="1" errors="0">
+        <testcase errors="0" failures="0">
+        </testcase>
+    </testsuite>
+</testsuites>

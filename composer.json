@@ -1,0 +1,38 @@
+{
+    "name": "vansari/phplint-merger",
+    "description": "Simple XML Log Merger for overtrue/phplint xml reports",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kurt Junker",
+            "email": "junker.kurt@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "symfony/console": "^5.2",
+        "symfony/finder": "^5.2",
+        "monolog/monolog": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpLintMerger\\": "src/PhpLintMerger/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.3.*",
+        "phpspec/prophecy-phpunit": "^2.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpLintMerger\\": "tests/PhpLintMerger/"
+        }
+    },
+    "bin": [
+        "bin/phplint-merger"
+    ]
+}

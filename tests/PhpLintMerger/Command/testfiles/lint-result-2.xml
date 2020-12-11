@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="PHP Linter" timestamp="2020-12-10T20:36:12+0100" time="11 secs" tests="1" errors="12">
+    <testcase errors="12" failures="0">
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 62">/root/path/of/project/src/folder/subfolder/Class1.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 18">/root/path/of/project/src/folder/subfolder/Class2.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 261">/root/path/of/project/src/folder/subfolder/Class2.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 132">/root/path/of/project/src/folder/subfolder/Class2.php</error>
+      <error type="Error" message=" Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in line 85">/root/path/of/project/src/folder/subfolder/Class3.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 166">/root/path/of/project/src/folder/subfolder/Class3.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 59">/root/path/of/project/src/folder/subfolder/Class4.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 95">/root/path/of/project/src/folder/subfolder/Class5.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 85">/root/path/of/project/src/folder/subfolder/Class6.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 294">/root/path/of/project/src/folder/subfolder/Class8.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 39">/root/path/of/project/src/folder/subfolder/Class8.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 37">/root/path/of/project/src/folder/subfolder/Class9.php</error>
+    </testcase>
+  </testsuite>
+</testsuites>

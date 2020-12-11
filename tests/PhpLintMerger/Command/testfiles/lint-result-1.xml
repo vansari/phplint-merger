@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="PHP Linter" timestamp="2020-12-10T20:35:50+0100" time="1 sec" tests="1" errors="4">
+    <testcase errors="4" failures="0">
+      <error type="Error" message=" Methods with the same name as their class will not be constructors in line 3">/root/path/of/project/src/folder/subfolder1/Class1.php</error>
+      <error type="Error" message=" Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in line 140">/root/path/of/project/src/folder/subfolder1/Class1.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 91">/root/path/of/project/src/folder/subfolder1/Class2.php</error>
+      <error type="Error" message=" Array and string offset access syntax with curly braces is deprecated in line 8">/root/path/of/project/src/folder/subfolder1/Class2.php</error>
+    </testcase>
+</testsuite>
+</testsuites>
