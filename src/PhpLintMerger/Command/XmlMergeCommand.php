@@ -61,11 +61,16 @@ class XmlMergeCommand extends Command {
 
     /**
      * @return LoggerFactory|null
+     * @codeCoverageIgnore
      */
     public function getLogger(): ?Logger {
         return $this->logger;
     }
 
+    /**
+     * @inheritDoc
+     * @codeCoverageIgnore
+     */
     protected function configure() {
         $this
             ->setName('xml')
@@ -80,16 +85,23 @@ class XmlMergeCommand extends Command {
                 InputArgument::REQUIRED,
                 'The final report xml file.'
             )
-            ->addArgument(
+            ->addOption(
                 'level',
+                ['--level', '-l'],
                 InputArgument::OPTIONAL,
                 'The log level [INFO|DEBUG|ERROR]',
                 'INFO'
             );
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $logLevel = strtoupper($input->getArgument('level'));
+        $logLevel = strtoupper($input->getOption('level'));
         if (!in_array($logLevel, ['INFO', 'DEBUG', 'ERROR'])) {
             $output->writeln('Wrong log level given.');
             return 1;
@@ -100,6 +112,7 @@ class XmlMergeCommand extends Command {
         );
         $finder = new Finder();
         $finder->in(realpath($input->getArgument('in')));
+        $finder->sortByName();
 
         $this->xmlDocument = new DOMDocument('1.0', 'UTF-8');
         $this->xmlDocument->formatOutput = true;
@@ -108,6 +121,9 @@ class XmlMergeCommand extends Command {
         $this->xmlDocument->appendChild($root);
 
         foreach ($finder as $file) {
+            if ($file->isDir()) {
+                continue;
+            }
             try {
                 $xml = new SimpleXMLElement(file_get_contents($file->getPathname()));
                 $testSuites = get_object_vars($xml);
@@ -126,6 +142,10 @@ class XmlMergeCommand extends Command {
         // We have only one TestSuite => PHP Linter
         /** @var DOMElement $testSuite */
         $testSuite = $root->getElementsByTagName(self::NODE_TESTSUITE)[0];
+        if (null === $testSuite) {
+            $this->getLogger()->info('No testsuite was merged');
+            return 0;
+        }
         // Set the over all Tests count
         $this->getLogger()->info('Overall Tests: ' . (string)$this->testCount);
         $testSuite->setAttribute(self::ATTR_TESTS, (string)$this->testCount);
