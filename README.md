@@ -2,6 +2,8 @@
 Simple XML Merger for overtrue/phplint xml reports
 ______
 [![Build Status](https://travis-ci.com/vansari/phplint-merger.svg?branch=main)](https://travis-ci.com/vansari/phplint-merger)
+[![Latest Stable Version](https://poser.pugx.org/vansari/phplint-merger/v)](//packagist.org/packages/vansari/phplint-merger)
+[![License](https://poser.pugx.org/vansari/phplint-merger/license)](//packagist.org/packages/vansari/phplint-merger)
 
 ## Description
 
