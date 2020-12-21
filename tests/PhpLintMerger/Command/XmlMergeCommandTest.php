@@ -63,7 +63,7 @@ class XmlMergeCommandTest extends TestCase {
         $command->run($input, $output->reveal());
 
         $this->assertFileExists($this->outFile);
-        $this->assertSame(
+        $this->assertEquals(
             file_get_contents($this->outfileExpected),
             file_get_contents($this->outFile)
         );
