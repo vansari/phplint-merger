@@ -22,7 +22,7 @@ after_success:
 # Monitor only these branches
 branches:
   only:
-  - master
+  - main
   - dev
 
 # You can delete the cache using travis-ci web interface
