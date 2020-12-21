@@ -3,5 +3,29 @@ php:
   - '7.3'
   - '7.4'
   - '8.0'
+
 install:
-  - composer install -a
+  - travis_retry composer install -a --no-interaction --no-suggest
+
+# Testing the app (see phpunit.xml) for configs, generating Code Coverage report
+script:
+  - ./vendor/bin/phpunit --coverage-clover=coverage.xml
+
+#after_script:
+
+after_success:
+# Submit coverage report to https://codecov.io
+  - bash <(curl -s https://codecov.io/bash)
+
+#after_failure:
+
+# Monitor only these branches
+branches:
+  only:
+  - master
+  - dev
+
+# You can delete the cache using travis-ci web interface
+cache:
+  directories:
+  - $HOME/.composer/cache
