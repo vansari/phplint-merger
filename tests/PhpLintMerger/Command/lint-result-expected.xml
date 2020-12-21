@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
   <testsuite name="PHP Linter" tests="10" errors="16">
+    <testcase name="/root/path/of/project/src/folder/subfolder1/Class1.php" errors="2" failures="0">
+      <error type="Error" message="Methods with the same name as their class will not be constructors in line 3"/>
+      <error type="Error" message="Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in line 140"/>
+    </testcase>
+    <testcase name="/root/path/of/project/src/folder/subfolder1/Class2.php" errors="2" failures="0">
+      <error type="Error" message="Array and string offset access syntax with curly braces is deprecated in line 91"/>
+      <error type="Error" message="Array and string offset access syntax with curly braces is deprecated in line 8"/>
+    </testcase>
     <testcase name="/root/path/of/project/src/folder/subfolder/Class1.php" errors="1" failures="0">
       <error type="Error" message="Array and string offset access syntax with curly braces is deprecated in line 62"/>
     </testcase>
@@ -28,14 +36,6 @@
     </testcase>
     <testcase name="/root/path/of/project/src/folder/subfolder/Class9.php" errors="1" failures="0">
       <error type="Error" message="Array and string offset access syntax with curly braces is deprecated in line 37"/>
-    </testcase>
-    <testcase name="/root/path/of/project/src/folder/subfolder1/Class1.php" errors="2" failures="0">
-      <error type="Error" message="Methods with the same name as their class will not be constructors in line 3"/>
-      <error type="Error" message="Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in line 140"/>
-    </testcase>
-    <testcase name="/root/path/of/project/src/folder/subfolder1/Class2.php" errors="2" failures="0">
-      <error type="Error" message="Array and string offset access syntax with curly braces is deprecated in line 91"/>
-      <error type="Error" message="Array and string offset access syntax with curly braces is deprecated in line 8"/>
     </testcase>
   </testsuite>
 </testsuites>

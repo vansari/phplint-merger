@@ -112,6 +112,7 @@ class XmlMergeCommand extends Command {
         );
         $finder = new Finder();
         $finder->in(realpath($input->getArgument('in')));
+        $finder->sortByName();
 
         $this->xmlDocument = new DOMDocument('1.0', 'UTF-8');
         $this->xmlDocument->formatOutput = true;
