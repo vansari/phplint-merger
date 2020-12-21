@@ -9,7 +9,7 @@ install:
 
 # Testing the app (see phpunit.xml) for configs, generating Code Coverage report
 script:
-  - ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  - ./vendor/bin/phpunit
 
 #after_script:
 
