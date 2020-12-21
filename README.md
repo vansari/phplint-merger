@@ -1,5 +1,6 @@
 # phplint-merger
 Simple XML Merger for overtrue/phplint xml reports
+______
 [![Build Status](https://travis-ci.com/vansari/phplint-merger.svg?branch=main)](https://travis-ci.com/vansari/phplint-merger)
 
 ## Description
