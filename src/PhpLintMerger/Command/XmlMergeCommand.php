@@ -111,7 +111,7 @@ class XmlMergeCommand extends Command {
         $this->xmlDocument->appendChild($root);
         /** @var SplFileInfo $file */
         foreach ($finder as $file) {
-            if (self::SUPPORTED_EXT !== $file->getExtension()) {
+            if ($file->isDir() || self::SUPPORTED_EXT !== $file->getExtension()) {
                 continue;
             }
             try {
