@@ -9,6 +9,7 @@ use Exception;
 use Monolog\Logger;
 use PhpLintMerger\Logger\LoggerFactory;
 use SimpleXMLElement;
+use SplFileInfo;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,6 +46,8 @@ class XmlMergeCommand extends Command {
      * @var int
      */
     private $errorCount = 0;
+
+    private const SUPPORTED_EXT = 'xml';
 
     private const NODE_TESTSUITE = 'testsuite';
     private const NODE_TESTCASE = 'testcase';
@@ -119,9 +122,9 @@ class XmlMergeCommand extends Command {
 
         $root = $this->xmlDocument->createElement('testsuites');
         $this->xmlDocument->appendChild($root);
-
+        /** @var SplFileInfo $file */
         foreach ($finder as $file) {
-            if ($file->isDir()) {
+            if ($file->isDir() || self::SUPPORTED_EXT !== $file->getExtension()) {
                 continue;
             }
             try {
