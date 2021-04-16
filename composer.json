@@ -14,8 +14,8 @@
         "ext-dom": "*",
         "ext-json": "*",
         "ext-simplexml": "*",
-        "symfony/console": "^5.2",
-        "symfony/finder": "^5.2",
+        "symfony/console": "^5.1",
+        "symfony/finder": "^5.1",
         "monolog/monolog": "^2.1"
     },
     "autoload": {
