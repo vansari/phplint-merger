@@ -38,7 +38,7 @@
         "bin/phplint-merger"
     ],
     "scripts": {
-        "test": "vendor/bin/phpunit --no-coverage --stderr -v --debug",
+        "unit": "vendor/bin/phpunit --no-coverage --stderr -v --debug",
         "lint": "vendor/bin/phplint -v ./ --exclude=vendor",
         "codestyle": "vendor/bin/phpcs --standard=PSR12 ./src"
     }
