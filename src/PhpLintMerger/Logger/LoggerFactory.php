@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace PhpLintMerger\Logger;
 
@@ -8,7 +9,8 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Logger as MonoLogger;
 
-class LoggerFactory {
+class LoggerFactory
+{
 
     public const LOGLEVEL_MAP = [
         'INFO' => Logger::INFO,

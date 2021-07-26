@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace PhpLintMerger\Command;
 
@@ -8,6 +9,7 @@ use DOMElement;
 use Exception;
 use Monolog\Logger;
 use PhpLintMerger\Logger\LoggerFactory;
+use RuntimeException;
 use SimpleXMLElement;
 use SplFileInfo;
 use Symfony\Component\Console\Command\Command;
@@ -20,7 +22,8 @@ use Symfony\Component\Finder\Finder;
  * Class XmlMergeCommand
  * Inspired by Nimut\PhpunitMerger\Command\LogCommand
  */
-class XmlMergeCommand extends Command {
+class XmlMergeCommand extends Command
+{
 
     /**
      * @var int
@@ -66,7 +69,8 @@ class XmlMergeCommand extends Command {
      * @return LoggerFactory|null
      * @codeCoverageIgnore
      */
-    public function getLogger(): ?Logger {
+    public function getLogger(): ?Logger
+    {
         return $this->logger;
     }
 
@@ -74,12 +78,13 @@ class XmlMergeCommand extends Command {
      * @inheritDoc
      * @codeCoverageIgnore
      */
-    protected function configure() {
+    protected function configure()
+    {
         $this
             ->setName('xml')
             ->setDescription('Merges multi xml files from overtrue/phplint')
             ->addArgument(
-            'in',
+                'in',
                 InputArgument::REQUIRED,
                 'Directory of the xml reports'
             )
@@ -103,7 +108,8 @@ class XmlMergeCommand extends Command {
      * @return int
      * @throws Exception
      */
-    protected function execute(InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $logLevel = strtoupper($input->getOption('level'));
         if (!in_array($logLevel, ['INFO', 'DEBUG', 'ERROR'])) {
             $output->writeln('Wrong log level given.');
@@ -167,7 +173,17 @@ class XmlMergeCommand extends Command {
 
         $file = $input->getArgument('out');
         if (!is_dir(dirname($file))) {
-            @mkdir(dirname($file), 0777, true);
+            if (
+                !mkdir($concurrentDirectory = dirname($file), 0777, true)
+                && !is_dir($concurrentDirectory)
+            ) {
+                throw new RuntimeException(
+                    sprintf(
+                        'Directory "%s" was not created',
+                        $concurrentDirectory
+                    )
+                );
+            }
         }
         $this->xmlDocument->save($input->getArgument('out'));
 
@@ -178,7 +194,8 @@ class XmlMergeCommand extends Command {
      * @param DOMElement $parent
      * @param SimpleXMLElement[] $testSuites
      */
-    private function parseTestSuites(DOMElement $parent, array $testSuites): void {
+    private function parseTestSuites(DOMElement $parent, array $testSuites): void
+    {
         foreach ($testSuites as $testSuite) {
             $name = (string)$testSuite->attributes()->{self::ATTR_NAME};
             if (isset($this->domElements[$name])) {
@@ -207,7 +224,8 @@ class XmlMergeCommand extends Command {
      * @param DOMElement $parent
      * @param SimpleXMLElement[] $testCases
      */
-    private function parseTestCaseAndErrors(DOMElement $parent, array $testCases): void {
+    private function parseTestCaseAndErrors(DOMElement $parent, array $testCases): void
+    {
         foreach ($testCases as $testCase) {
             $parsedTestCases = [];
             $errors = (int)$testCase->attributes()->{self::ATTR_ERROR};
@@ -218,7 +236,7 @@ class XmlMergeCommand extends Command {
             $this->getLogger()->debug("Found $errors errors in testcase.");
             $name = null;
             /** @var SimpleXMLElement $error */
-            foreach($testCase->{self::NODE_ERROR} as $error) {
+            foreach ($testCase->{self::NODE_ERROR} as $error) {
                 $name = (string)$error[0];
                 if (isset($this->domElements[$name])) {
                     $this->getLogger()->debug('TestCase-Element found with name ' . $name);
@@ -243,7 +261,14 @@ class XmlMergeCommand extends Command {
                 $element->appendChild($errorElement);
                 $this->errorElements[$name][] = $element;
                 $this->getLogger()->debug(count($this->errorElements[$name]) . ' errors added.');
-                $this->getLogger()->debug($name . ': ' . (array_key_exists($name, $this->domElements) ? 'exists' : 'not exists'));
+                $this->getLogger()->debug(
+                    $name . ': '
+                    . (
+                        array_key_exists($name, $this->domElements)
+                            ? 'exists'
+                            : 'not exists'
+                    )
+                );
                 $parsedTestCases[] = $name;
             }
             if ($name === null) {
