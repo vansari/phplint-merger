@@ -1,4 +1,5 @@
 /vendor/
 /.idea/
 /build/
-.phpunit.result.cache
+/.phpunit.result.cache
+/.phplint-cache

@@ -1,7 +1,7 @@
 # phplint-merger
 Simple XML Merger for overtrue/phplint xml reports
 ______
-[![Build Status](https://travis-ci.com/vansari/phplint-merger.svg?branch=main)](https://travis-ci.com/vansari/phplint-merger)
+[![Gihub](https://github.com/vansari/phplint-merger/actions/workflows/php.yml/badge.svg)](https://github.com/vansari/phplint-merger/actions/workflows/php.yml)
 [![Latest Stable Version](https://poser.pugx.org/vansari/phplint-merger/v)](//packagist.org/packages/vansari/phplint-merger)
 [![License](https://poser.pugx.org/vansari/phplint-merger/license)](//packagist.org/packages/vansari/phplint-merger)
 [![codecov](https://codecov.io/gh/vansari/phplint-merger/branch/main/graph/badge.svg?token=HBW1X5L4PQ)](https://codecov.io/gh/vansari/phplint-merger)
